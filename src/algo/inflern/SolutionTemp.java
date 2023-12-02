@@ -1,4 +1,4 @@
-package algo;
+package algo.inflern;
 
 /**
  * Input :
@@ -7,9 +7,10 @@ package algo;
 
 public class SolutionTemp {
     public static void main(String[] args) {
-        new SolutionTemp().solve();
+        new SolutionTemp().solve("");
     }
 
-    public void solve() {
+    public String solve(String str) {
+        return null;
     }
 }
