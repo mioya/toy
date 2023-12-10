@@ -1,4 +1,4 @@
-package algo.inflern;
+package algo;
 
 /**
  * Input :
