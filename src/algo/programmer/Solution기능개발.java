@@ -1,7 +1,10 @@
 package algo.programmer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -12,10 +15,50 @@ import java.util.Stack;
 public class Solution기능개발 {
     public static void main(String[] args) {
      //   new Solution기능개발().solution(new int[]{50}, new int[]{20});
-        new Solution기능개발().solution(new int[]{93, 30, 55}, new int[]{1, 30, 5});
-        new Solution기능개발().solution(new int[]{95, 90, 99, 99, 80, 99}, new int[]{1, 1, 1, 1, 1, 1});
+       // new Solution기능개발().solution(new int[]{93, 30, 55}, new int[]{1, 30, 5});
+        new Solution기능개발().solution정답(new int[]{95, 90, 99, 99, 80, 99}, new int[]{1, 1, 1, 1, 1, 1});
     }
+    /**
+     * days - 현재까지의 작업 중에서 가장 많은 일수
+     * count - 작업 수
+     * remain - i번째 작업일수
+     *
+     * 1. i번째 작업일수 구한다.
+     * 2. 현재 일자는 0일로 세팅
+     * 3.1 작업일수 > 현재일자 -> 기존작업이 더 작음
+     *      작업수 > 0         -> 작업수를 더한다
+     *          현재까지의 작업 중에서 가장 많은 일수에 작업일수를 넣는다
+     *      작업수 =< 0        -> 초기값이거나
+     *
+     * 3.2 작업일수 < 현재일자
+     *      작업수를 1 추가한다 -> 기존작업이 더 큰거니깐 작업수 추가
+     *
+     */
+    public int[] solution정답(int[] progresses, int[] speeds) {
+        List<Integer> answerList = new ArrayList<>();
 
+        int days = 0;
+        int count = 0;
+
+
+        for (int i = 0; i < progresses.length; i++) {
+            int remain = (int) Math.ceil((100 - progresses[i]) / (double) speeds[i]);
+
+            if (remain > days) {
+                if (count > 0) {
+                    answerList.add(count);
+                    count = 0;
+                }
+                days = remain;
+            }
+
+            count++;
+        }
+
+        answerList.add(count);
+
+        return answerList.stream().mapToInt(Integer::intValue).toArray();
+    }
     public int[] solution(int[] progresses, int[] speeds) {
         int[] answer = {};
         int remainProgress;
